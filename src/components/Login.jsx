@@ -5,7 +5,7 @@ import { AuthContext } from "../ProviderContext/AuthProvider";
 
 const Login = () => {
 
- const {signInUser} = useContext(AuthContext)
+ const {signInUser, signWithGoogle,signWithGithub} = useContext(AuthContext)
 
 
     // even handler
@@ -18,14 +18,43 @@ const Login = () => {
         signInUser(email,password)
         .then(result=>{
             console.log(result.user)
+            e.target.reset();
         })
         .catch(error=>{
-            console.log(error)
+            console.log(error);
         })
 
     }
+
+
+  // google even hand ler
+    const handelGoogleSignIn = () =>{
+      signWithGoogle()
+      .then(result=>{
+        console.log(result.user);
+      })
+      .catch(error=>{
+        console.log(error)
+      })
+    }
+
+    const handelGithubLogin = () =>{
+      signWithGithub()
+      .then(result=>{
+        console.log(result.user)
+      })
+
+      .catch(error=>{
+        console.log(error)
+      })
+
+    }
+
+
+
+
     return (
-        <div className="hero min-h-screen bg-base-200">
+        <div className="hero min-h-screen bg-[#F06292]">
   <div className="hero-content flex-col ">
     <div className="text-center ">
       <h1 className="text-5xl font-bold">Login now!</h1>
@@ -55,6 +84,9 @@ const Login = () => {
         <p>new to context? Please Register <Link to='/register'>
         <button className="btn btn-link">Register</button>
         </Link></p>
+        <p><button onClick={handelGoogleSignIn} className="btn btn-ghost">Google</button></p>
+
+        <p><button onClick={handelGithubLogin} className="btn btn-primary hover:bg-red-600">Github</button></p>
       </div>
     </div>
   </div>

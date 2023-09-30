@@ -12,6 +12,9 @@ import Home from './components/Home.jsx';
 import Login from './components/Login.jsx';
 import Register from './components/Register.jsx';
 import AuthProvider from './ProviderContext/AuthProvider.jsx';
+import Orders from './components/Orders.jsx';
+import PrivateRout from './Rout/PrivateRout.jsx';
+import Banner from './components/Banner.jsx';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -20,6 +23,7 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Home></Home>,
+        loader: () => fetch('data.json'),
       },
       {
         path: '/login',
@@ -28,6 +32,14 @@ const router = createBrowserRouter([
       {
         path: '/register',
         element: <Register></Register>,
+      },
+      {
+        path: '/orders',
+        element:<PrivateRout><Orders></Orders></PrivateRout>,
+      },
+      {
+        path: '/banner',
+        element: <Banner></Banner>,
       },
     ]
   },

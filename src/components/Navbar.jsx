@@ -5,23 +5,31 @@ import { AuthContext } from "../ProviderContext/AuthProvider";
 
 const Navbar = () => {
 
-    const {user} = useContext(AuthContext);
+    const {user, logOut} = useContext(AuthContext);
 
   const handelLogOut = ()=>{
-    logOut()
+     logOut()
     .then(()=>console.log('user logout successfully'))
     .catch(error=>console.log(error))
   }
 
-    const navLinks = <>
+    const navLinks = <> 
      <li><NavLink to='/'>Home</NavLink></li>
      <li><NavLink to='/login'>Login</NavLink></li>
      <li><NavLink to='/register'>Register</NavLink></li>
+     <li><NavLink to='/orders'>Orders</NavLink></li>
+
+     {user && <>
+     
+     
+    <li><NavLink to='/profile'>Profile</NavLink></li>
+     <li><NavLink to='/dashboard'>Dashboard</NavLink></li>
     
-    
+    </>}
+
     </>
     return (
-        <div className="navbar bg-base-100">
+        <div className="navbar bg-[#00D084]">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
